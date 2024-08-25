@@ -45,7 +45,10 @@ void factory_reset() {
         thermal_config_save(1, temperature - cfg.therm_cal_offset);
         #elif defined(USE_THERMAL_REGULATION) && defined(USE_THERM_AUTOCALIBRATE)
         // assume current temperature is 21 C
-        thermal_config_save(1, 21);
+        #ifndef THERM_AUTOCALIBRATE_TEMP
+        #define THERM_AUTOCALIBRATE_TEMP 21
+        #endif
+        thermal_config_save(1, THERM_AUTOCALIBRATE_TEMP);
         #endif
 
         // save all settings to eeprom
