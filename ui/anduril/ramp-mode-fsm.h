@@ -26,7 +26,7 @@
 #endif
 
 // ensure the jump start feature gets compiled in if needed
-#ifdef DEFAULT_JUMP_START_LEVEL
+#if defined(DEFAULT_JUMP_START_LEVEL) && !defined(USE_MULTICHANNEL_JUMP_START)
 #define USE_JUMP_START
 #endif
 

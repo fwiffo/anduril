@@ -55,8 +55,8 @@ Channel channels[] = {
 // handling any possible combination
 // and any before/after state
 void set_pwms(uint16_t ch1_pwm, uint16_t ch2_pwm, uint16_t top) {
-    bool was_on = (CH1_PWM>0) | (CH2_PWM>0);
-    bool now_on = (ch1_pwm>0) | (ch2_pwm>0);
+    bool was_on = (CH1_PWM>0 || CH2_PWM>0);
+    bool now_on = (ch1_pwm>0 || ch2_pwm>0);
 
     if (! now_on) {
         CH1_PWM = 0;
@@ -91,6 +91,32 @@ void set_pwms(uint16_t ch1_pwm, uint16_t ch2_pwm, uint16_t top) {
     if (! was_on) PWM_CNT = 0;
 }
 
+#ifdef USE_MULTICHANNEL_JUMP_START
+// This works approximately like the default USE_JUMP_START behavior, but only
+// jump-starts channels that actually need to be powered.
+void set_pwms_with_jump_start(
+        uint8_t level, uint16_t ch1_pwm, uint16_t ch2_pwm, uint16_t top) {
+    if (!(CH1_PWM>0 || CH2_PWM>0) && (ch1_pwm>0 || ch2_pwm>0) && level < JUMP_START_LEVEL) {
+        uint16_t jumpstart_pwm = PWM_GET(pwm1_levels, JUMP_START_LEVEL);
+        uint16_t jumpstart_top = PWM_GET(pwm_tops, JUMP_START_LEVEL);
+        uint16_t jumpstart_ch1 = ch1_pwm;
+        uint16_t jumpstart_ch2 = ch2_pwm;
+        if (ch1_pwm && ch1_pwm < jumpstart_pwm) {
+            jumpstart_ch1 = jumpstart_pwm;
+        }
+        if (ch2_pwm && ch2_pwm < jumpstart_pwm) {
+            jumpstart_ch2 = jumpstart_pwm;
+        }
+        set_pwms(jumpstart_ch1, jumpstart_ch2, jumpstart_top);
+        delay_4ms(JUMP_START_TIME/4);
+    }
+    set_pwms(ch1_pwm, ch2_pwm, top);
+}
+#define SET_PWMS(ch1, ch2, top) set_pwms_with_jump_start(level, ch1, ch2, top)
+#else
+#define SET_PWMS set_pwms
+#endif
+
 void set_level_zero() {
     return set_pwms(0, 0, PWM_TOP_INIT);
 }
@@ -98,19 +124,19 @@ void set_level_zero() {
 void set_level_ch1(uint8_t level) {
     uint16_t pwm = PWM_GET(pwm1_levels, level);
     uint16_t top = PWM_GET(pwm_tops, level);
-    set_pwms(pwm, 0, top);
+    SET_PWMS(pwm, 0, top);
 }
 
 void set_level_ch2(uint8_t level) {
     uint16_t pwm = PWM_GET(pwm1_levels, level);
     uint16_t top = PWM_GET(pwm_tops, level);
-    set_pwms(0, pwm, top);
+    SET_PWMS(0, pwm, top);
 }
 
 void set_level_both(uint8_t level) {
     uint16_t pwm = PWM_GET(pwm1_levels, level);
     uint16_t top = PWM_GET(pwm_tops, level);
-    set_pwms(pwm, pwm, top);
+    SET_PWMS(pwm, pwm, top);
 }
 
 void set_level_blend(uint8_t level) {
@@ -121,7 +147,7 @@ void set_level_blend(uint8_t level) {
 
     calc_2ch_blend(&ch1_pwm, &ch2_pwm, brightness, top, blend);
 
-    set_pwms(ch1_pwm, ch2_pwm, top);
+    SET_PWMS(ch1_pwm, ch2_pwm, top);
 }
 
 void set_level_auto(uint8_t level) {
@@ -134,7 +160,7 @@ void set_level_auto(uint8_t level) {
 
     calc_2ch_blend(&ch1_pwm, &ch2_pwm, brightness, top, blend);
 
-    set_pwms(ch1_pwm, ch2_pwm, top);
+    SET_PWMS(ch1_pwm, ch2_pwm, top);
 }
 
 

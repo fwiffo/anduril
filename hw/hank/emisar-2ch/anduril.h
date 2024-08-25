@@ -88,7 +88,10 @@
 #define CANDLE_AMPLITUDE 33
 
 // the power regulator is a bit slow, so push it harder for a quick response from off
-#define DEFAULT_JUMP_START_LEVEL 21
+#undef USE_JUMP_START
+#define USE_MULTICHANNEL_JUMP_START
+#define JUMP_START_LEVEL 21
+#define JUMP_START_TIME 8
 #define BLINK_BRIGHTNESS 40
 #define BLINK_ONCE_TIME 12  // longer blink, since main LEDs are slow
 
