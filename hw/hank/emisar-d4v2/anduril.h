@@ -60,3 +60,5 @@
 #undef BLINK_AT_RAMP_MIDDLE
 #endif
 
+// Fwiffo's custom defaults.
+#include "hank/config-fwiffo.h"
