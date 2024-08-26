@@ -148,6 +148,12 @@ void set_level_both(uint8_t level) {
 }
 
 void set_level_blend(uint8_t level) {
+    #ifdef TURBO_IGNORES_TINT_RAMP
+    if (level > RAMP_DISCRETE_CEIL || level > RAMP_SMOOTH_CEIL) {
+        set_level_both(level);
+        return;
+    }
+    #endif
     PWM_DATATYPE ch1_pwm, ch2_pwm;
     PWM_DATATYPE brightness = PWM_GET(pwm1_levels, level);
     PWM_DATATYPE top        = PWM_GET(pwm_tops, level);
@@ -159,6 +165,12 @@ void set_level_blend(uint8_t level) {
 }
 
 void set_level_auto(uint8_t level) {
+    #ifdef TURBO_IGNORES_TINT_RAMP
+    if (level > RAMP_DISCRETE_CEIL || level > RAMP_SMOOTH_CEIL) {
+        set_level_both(level);
+        return;
+    }
+    #endif
     PWM_DATATYPE ch1_pwm, ch2_pwm;
     PWM_DATATYPE brightness = PWM_GET(pwm1_levels, level);
     PWM_DATATYPE top        = PWM_GET(pwm_tops, level);
