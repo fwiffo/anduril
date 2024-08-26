@@ -50,6 +50,9 @@ Channel channels[] = {
     RGB_AUX_CHANNELS
 };
 
+#ifdef CUSTOM_AUTORAMP_CURVE
+const uint8_t autoramp_curve[] = { CUSTOM_AUTORAMP_CURVE };
+#endif
 
 // set new values for both channels,
 // handling any possible combination
@@ -167,6 +170,9 @@ void set_level_auto(uint8_t level) {
     PWM_DATATYPE brightness = PWM_GET(pwm1_levels, level);
     PWM_DATATYPE top        = PWM_GET(pwm_tops, level);
     uint8_t blend           = 255 * (uint16_t)level / RAMP_SIZE;
+    #ifdef CUSTOM_AUTORAMP_CURVE
+    blend = autoramp_curve[blend];
+    #endif
     if (cfg.channel_mode_args[channel_mode] & 0b01000000)
         blend = 255 - blend;
 
