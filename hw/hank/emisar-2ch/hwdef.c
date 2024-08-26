@@ -78,6 +78,14 @@ void set_pwms(uint16_t ch1_pwm, uint16_t ch2_pwm, uint16_t top) {
     else
         CH2_ENABLE_PORT &= ~(1 << CH2_ENABLE_PIN);  // disable opamp
 
+    #ifdef FORCE_ZERO_MOONLIGHT
+    if (ch1_pwm <= 1 && top == 16383) {
+        ch1_pwm = 0;
+    }
+    if (ch2_pwm <= 1 && top == 16383) {
+        ch2_pwm = 0;
+    }
+    #endif
     CH1_PWM = ch1_pwm;
     CH2_PWM = ch2_pwm;
 
