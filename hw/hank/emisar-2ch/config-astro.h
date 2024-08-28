@@ -6,12 +6,13 @@
  */
 
 // Default to red channel for astro.
+#define SWAP_SINGLE_CHANNELS_IN_MENU
 #undef DEFAULT_CHANNEL_MODE
 #define DEFAULT_CHANNEL_MODE CM_CH1
 
 // Multi-channel jump-start.
 #undef JUMP_START_LEVEL
-#define JUMP_START_LEVEL 20
+#define JUMP_START_LEVEL 10
 
 // Enable RGB AUX red as extra-low red mode and disable both channel and
 // blend modes which are silly with the red/white configuration.

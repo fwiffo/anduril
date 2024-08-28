@@ -19,5 +19,8 @@ rm hw/hank/emisar-2ch/config-fwiffo.h
 ./make 'hank-noctigon-kr4-219b '
 cp hex/anduril.hank-noctigon-kr4-219b.hex "$DIR"/d4v2-219b.hex
 
+./make 'hank-noctigon-kr4-nofet '
+cp hex/anduril.hank-noctigon-kr4-219b.hex "$DIR"/d4v2-219b-nofet.hex
+
 ./make 'hank-noctigon-kr4 '
 cp hex/anduril.hank-noctigon-kr4.hex "$DIR"/kr4.hex

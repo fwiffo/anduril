@@ -6,12 +6,16 @@
  */
 
 // Default to flood channel.
+#define SWAP_SINGLE_CHANNELS_IN_MENU
 #undef DEFAULT_CHANNEL_MODE
 #define DEFAULT_CHANNEL_MODE CM_CH1
 
 // Multichannel jump-start.
-#undef JUMP_START_LEVEL
-#define JUMP_START_LEVEL 40  // TODO: tune better
+// This seems to be behaving very strangely on the D4SV2. 43 is slow to start,
+// but 44 blinks brightly. Other lights work fine. I'm gonna stick with the
+// defaults for now, I guess. Slow start is better than blinking.
+// #undef JUMP_START_LEVEL
+// #define JUMP_START_LEVEL 43
 
 // Enable RGB AUX red as extra-low red mode and disable blend modes which are
 // silly with the flood/throw configuration.
