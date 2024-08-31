@@ -6,6 +6,10 @@ cp hw/hank/emisar-2ch/config-tintramp-sst20.h hw/hank/emisar-2ch/config-fwiffo.h
 ./make 'hank-emisar-2ch '
 cp hex/anduril.hank-emisar-2ch.hex "$DIR"/d4v2-tintramp-sst20.hex
 
+cp hw/hank/emisar-2ch/config-tintramp-519a.h hw/hank/emisar-2ch/config-fwiffo.h
+./make 'hank-emisar-2ch '
+cp hex/anduril.hank-emisar-2ch.hex "$DIR"/d4v2-tintramp-519a.hex
+
 cp hw/hank/emisar-2ch/config-astro.h hw/hank/emisar-2ch/config-fwiffo.h
 ./make 'hank-emisar-2ch '
 cp hex/anduril.hank-emisar-2ch.hex "$DIR"/d4v2-astro.hex
