@@ -19,9 +19,12 @@ do
 done
 
 for i in \
+    "emisar-d3aa d3aa-519a" \
     "noctigon-kr4-219b d4v2-219b" \
     "noctigon-kr4-nofet d4v2-219b-nofet" \
-    "noctigon-kr4 kr4-sst20"
+    "noctigon-kr4 kr4-sst20" \
+    "noctigon-k1-sbt90 d1-sfn60" \
+    "noctigon-dm11-boost d1k-ffl707a"
 do
     set -- $i  # Convert the above into $1, $2...
     ./make hank-$1' '
