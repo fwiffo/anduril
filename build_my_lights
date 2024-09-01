@@ -28,3 +28,6 @@ cp hex/anduril.hank-noctigon-kr4-219b.hex "$DIR"/d4v2-219b-nofet.hex
 
 ./make 'hank-noctigon-kr4 '
 cp hex/anduril.hank-noctigon-kr4.hex "$DIR"/kr4.hex
+
+./make 'hank-emisar-d3aa'
+cp hex/anduril.hank-emisar-d3aa.hex "$DIR"/d3aa.hex

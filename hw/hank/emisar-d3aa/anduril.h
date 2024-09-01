@@ -116,3 +116,9 @@
 // added for convenience
 #define USE_SOFT_FACTORY_RESET
 
+// Seems to be necessary?
+#define USE_DELAY_ZERO
+
+// Fwiffo's custom defaults.
+#include "hank/config-fwiffo.h"
+#include "config-fwiffo.h"
