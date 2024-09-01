@@ -2,32 +2,33 @@
 DIR="/mnt/g/My Drive/anduril firmware/"`date +%F_%H_%M_%S`
 mkdir "$DIR"
 
-cp hw/hank/emisar-2ch/config-tintramp-sst20.h hw/hank/emisar-2ch/config-fwiffo.h
-./make 'hank-emisar-2ch '
-cp hex/anduril.hank-emisar-2ch.hex "$DIR"/d4v2-tintramp-sst20.hex
+for i in \
+    "emisar-2ch d4v2-tintramp-sst20" \
+    "emisar-2ch d4v2-tintramp-519a" \
+    "emisar-2ch d4v2-astro" \
+    "emisar-2ch d4sv2-flood-throw"
+do
+    set -- $i  # Convert the above into $1, $2...
+    cp hw/hank/$1/config-$2.h hw/hank/$1/config-fwiffo.h
+    ./make hank-$1' '
+    rm hw/hank/$1/config-fwiffo.h
+    cp hex/anduril.hank-$1.hex "$DIR"/$2.hex
+    echo
+    echo Built "$DIR"/$2.hex
+    echo
+done
 
-cp hw/hank/emisar-2ch/config-tintramp-519a.h hw/hank/emisar-2ch/config-fwiffo.h
-./make 'hank-emisar-2ch '
-cp hex/anduril.hank-emisar-2ch.hex "$DIR"/d4v2-tintramp-519a.hex
+for i in \
+    "noctigon-kr4-219b d4v2-219b" \
+    "noctigon-kr4-nofet d4v2-219b-nofet" \
+    "noctigon-kr4 kr4-sst20"
+do
+    set -- $i  # Convert the above into $1, $2...
+    ./make hank-$1' '
+    cp hex/anduril.hank-$1.hex "$DIR"/$2.hex
+    echo
+    echo Built "$DIR"/$2.hex
+    echo
+done
 
-cp hw/hank/emisar-2ch/config-astro.h hw/hank/emisar-2ch/config-fwiffo.h
-./make 'hank-emisar-2ch '
-cp hex/anduril.hank-emisar-2ch.hex "$DIR"/d4v2-astro.hex
-
-cp hw/hank/emisar-2ch/config-d4sv2-flood-throw.h hw/hank/emisar-2ch/config-fwiffo.h
-./make 'hank-emisar-2ch '
-cp hex/anduril.hank-emisar-2ch.hex "$DIR"/d4sv2-flood-throw.hex
-
-rm hw/hank/emisar-2ch/config-fwiffo.h
-
-./make 'hank-noctigon-kr4-219b '
-cp hex/anduril.hank-noctigon-kr4-219b.hex "$DIR"/d4v2-219b.hex
-
-./make 'hank-noctigon-kr4-nofet '
-cp hex/anduril.hank-noctigon-kr4-219b.hex "$DIR"/d4v2-219b-nofet.hex
-
-./make 'hank-noctigon-kr4 '
-cp hex/anduril.hank-noctigon-kr4.hex "$DIR"/kr4.hex
-
-./make 'hank-emisar-d3aa'
-cp hex/anduril.hank-emisar-d3aa.hex "$DIR"/d3aa.hex
+echo Done.

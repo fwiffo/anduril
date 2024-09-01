@@ -21,6 +21,3 @@
 // silly with the flood/throw configuration.
 #undef CHANNEL_MODES_ENABLED
 #define CHANNEL_MODES_ENABLED 0b0000000000100111
-
-// TODO: Consider an option to reverse CH1 and CH2 so that flood is CH1, making
-// jumping around modes nicer.

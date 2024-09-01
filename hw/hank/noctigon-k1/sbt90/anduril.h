@@ -92,3 +92,6 @@
 // for compatibility with other models
 #define USE_SOFT_FACTORY_RESET
 
+// Fwiffo's custom defaults.
+#include "hank/config-fwiffo.h"
+#include "config-fwiffo.h"
