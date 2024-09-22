@@ -4,6 +4,8 @@
  * Channel 1: Sofirn SFN60 5500K
  */
 
+#include "hank/config-fwiffo.h"
+
 #undef DEFAULT_JUMP_START_LEVEL
 #undef JUMP_START_TIME
 #define DEFAULT_JUMP_START_LEVEL 10  // TODO: tune better.

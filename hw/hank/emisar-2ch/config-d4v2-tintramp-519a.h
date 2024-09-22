@@ -5,6 +5,8 @@
  * Channel 2: Nichia 519A 3500K with dome
  */
 
+#include "hank/config-fwiffo.h"
+
 // Default to auto-blend mode.
 #undef DEFAULT_CHANNEL_MODE
 #define DEFAULT_CHANNEL_MODE CM_AUTO

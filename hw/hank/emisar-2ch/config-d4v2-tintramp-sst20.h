@@ -5,6 +5,8 @@
  * Channel 2: Luminus SST-20, 2700K, 95 CRI
  */
 
+#include "hank/config-fwiffo.h"
+
 // Default to auto-blend mode.
 #undef DEFAULT_CHANNEL_MODE
 #define DEFAULT_CHANNEL_MODE CM_AUTO

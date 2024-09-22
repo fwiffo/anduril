@@ -5,6 +5,8 @@
  * Channel 2: Osram W1, CSLNM1.TG, 6000K
  */
 
+#include "hank/config-fwiffo.h"
+
 // Default to flood channel.
 #define SWAP_SINGLE_CHANNELS_IN_MENU
 #undef DEFAULT_CHANNEL_MODE

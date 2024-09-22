@@ -62,5 +62,4 @@
 #define MIN_THERM_STEPDOWN 80  // must be > end of dynamic PWM range
 
 // Fwiffo's custom defaults.
-#include "hank/config-fwiffo.h"
 #include "config-fwiffo.h"

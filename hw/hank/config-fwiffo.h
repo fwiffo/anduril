@@ -19,6 +19,14 @@
 #define STROBE_BRIGHTNESS RAMP_DISCRETE_CEIL / 3
 #define DEFAULT_BIKING_LEVEL RAMP_DISCRETE_CEIL / 3
 
+// Use aux red + aux blue for police strobe.
+#define USE_POLICE_COLOR_STROBE_MODE
+#define POLICE_STROBE_USES_AUX
+#undef POLICE_COLOR_STROBE_CH1
+#undef POLICE_COLOR_STROBE_CH2
+#define POLICE_COLOR_STROBE_CH1 CM_AUXRED
+#define POLICE_COLOR_STROBE_CH2 CM_AUXBLU
+
 // Dimmest possible moonlight, and 5 ramp steps, actually turbo turbo.
 #undef RAMP_STYLE
 #undef RAMP_DISCRETE_FLOOR

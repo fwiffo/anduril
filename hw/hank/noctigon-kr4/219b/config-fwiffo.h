@@ -4,6 +4,8 @@
  * Channel 1: Nichia 219BT-V1, 3500K, R9080
  */
 
+#include "hank/config-fwiffo.h"
+
 #undef DEFAULT_JUMP_START_LEVEL
 #define DEFAULT_JUMP_START_LEVEL 15  // TODO: tune better.
 
