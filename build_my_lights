@@ -8,56 +8,32 @@ for i in \
     "emisar-2ch d4v2-astro" \
     "emisar-2ch d4sv2-flood-throw" \
     "emisar-2ch d2-uv" \
-    "emisar-2ch d2-stock-uv"
+    "emisar-2ch d2-stock-uv" \
+    "emisar-d3aa 519a-5700k-dd" \
+    "emisar-d3aa candle" \
+    "emisar-d3aa stock" \
+    "noctigon-dm11/boost d1k-ffl707a" \
+    "noctigon-dm11/boost stock" \
+    "noctigon-k1/sbt90 d1-sfn60" \
+    "noctigon-k1/sbt90 stock" \
+    "noctigon-kr4 sst20" \
+    "noctigon-kr4 stock" \
+    "noctigon-kr4/219b d4v2" \
+    "noctigon-kr4/219b stock" \
+    "noctigon-kr4/nofet d4v2" \
+    "noctigon-kr4/nofet stock"
 do
     set -- $i  # Convert the above into $1, $2...
-    cp hw/hank/$1/config-$2.h hw/hank/$1/config-fwiffo.h
-    ./make hank-$1' '
-    rm hw/hank/$1/config-fwiffo.h
-    cp hex/anduril.hank-$1.hex "$DEST_DIR"/$2.hex
-    echo
-    echo Built "$DEST_DIR"/$2.hex
-    echo
-done
-
-for i in \
-    "emisar-d3aa d3aa-519a" \
-    "noctigon-kr4-219b d4v2-219b" \
-    "noctigon-kr4-nofet d4v2-219b-nofet" \
-    "noctigon-kr4 kr4-sst20" \
-    "noctigon-k1-sbt90 d1-sfn60" \
-    "noctigon-dm11-boost d1k-ffl707a"
-do
-    set -- $i  # Convert the above into $1, $2...
-    ./make hank-$1' '
-    cp hex/anduril.hank-$1.hex "$DEST_DIR"/$2.hex
-    echo
-    echo Built "$DEST_DIR"/$2.hex
-    echo
-done
-
-for name in \
-    "emisar-2ch" \
-    "emisar-d3aa" \
-    "noctigon-kr4-219b" \
-    "noctigon-kr4-nofet" \
-    "noctigon-kr4" \
-    "noctigon-k1-sbt90" \
-    "noctigon-dm11-boost"
-do
-    # Replace all hyphens with slashes, and then revert the first hypen to
-    # actually match the directory.
-    a="${name//-/\/}"
-    dir="${a/\//-}"
-    echo $dir
-    mv hw/hank/$dir/config-fwiffo.h hw/hank/$dir/config-fwiffo.bak
+    dir="$1"
+    name="$2"
+    model="${dir//\//-}"
+    echo "[48;5;236m[92m >>>" Building $model for $name... ">>> [0m"
+    cp hw/hank/$dir/config-$name.h hw/hank/$dir/config-fwiffo.h
+    ./make hank-$model' '
+    rm hw/hank/$dir/config-fwiffo.h
     touch hw/hank/$dir/config-fwiffo.h
-    ./make hank-$name' '
-    mv hw/hank/$dir/config-fwiffo.bak hw/hank/$dir/config-fwiffo.h
-    cp hex/anduril.hank-$name.hex "$DEST_DIR"/stock-$name.hex
-    echo
-    echo Built "$DEST_DIR"/stock-$name.hex
+    cp hex/anduril.hank-$model.hex "$DEST_DIR"/${model}_${name}.hex
+    echo "[48;5;236m[94m >>>" Built "$DEST_DIR"/${model}_${name}.hex ">>> [0m"
     echo
 done
 
-echo Done.

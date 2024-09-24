@@ -15,9 +15,9 @@
 #undef JUMP_START_LEVEL
 #define JUMP_START_LEVEL 10
 
-// Enable RGB AUX red as extra-low red mode.
+// Enable RGB AUX channels.
 #undef CHANNEL_MODES_ENABLED
-#define CHANNEL_MODES_ENABLED 0b0000000000111111
+#define CHANNEL_MODES_ENABLED 0b0000111111111111
 
 // With a 5 step ramp and, and SST-20 emitters at 2700K and 4000K, produces CCTs
 // of about 2780K, 3230K, 3500K, 3700K, 3880K. Also about 3300K on turbo and

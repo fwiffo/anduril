@@ -15,9 +15,9 @@
 #undef JUMP_START_LEVEL
 #define JUMP_START_LEVEL 10
 
-// Enable RGB AUX red as extra-low red mode.
+// Enable RGB AUX channels.
 #undef CHANNEL_MODES_ENABLED
-#define CHANNEL_MODES_ENABLED 0b0000000000111111
+#define CHANNEL_MODES_ENABLED 0b0000111111111111
 
 // With a 5 step ramp and, and 519A emitters at 3500K and 5700K, produces CCTs
 // of about 3500K, 4100K, 4500K, 4800K, 5400K
