@@ -66,6 +66,13 @@ typedef struct Config {
             uint8_t tint_ramp_style;
         #endif
     #endif
+    #ifdef USE_SECONDARY_CHANNEL_MODE_ARGS
+        // this is an array, needs a few bytes
+        uint8_t secondary_channel_mode_args[NUM_CHANNEL_MODES];
+        #ifdef USE_MANUAL_MEMORY
+            uint8_t manual_memory_secondary_channel_args[NUM_CHANNEL_MODES];
+        #endif
+    #endif
 
     ///// Smooth animation between steps, and for on/off
     #ifdef USE_SMOOTH_STEPS
