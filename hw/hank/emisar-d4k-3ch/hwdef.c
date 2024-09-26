@@ -31,49 +31,58 @@ bool gradual_tick_auto3(uint8_t gt);
 
 Channel channels[] = {
     { // main 2 LEDs only
-        .set_level    = set_level_main2,
-        .gradual_tick = gradual_tick_main2,
-        .has_args     = 0
+        .set_level          = set_level_main2,
+        .gradual_tick       = gradual_tick_main2,
+        .has_args           = 0,
+        .has_secondary_args = 0
     },
     { // main 2 and 3rd LEDs together
-        .set_level    = set_level_main2_led3,
-        .gradual_tick = gradual_tick_main2_led3,
-        .has_args     = 0
+        .set_level          = set_level_main2_led3,
+        .gradual_tick       = gradual_tick_main2_led3,
+        .has_args           = 0,
+        .has_secondary_args = 0
     },
     { // 3rd LED only
-        .set_level    = set_level_led3,
-        .gradual_tick = gradual_tick_led3,
-        .has_args     = 0
+        .set_level          = set_level_led3,
+        .gradual_tick       = gradual_tick_led3,
+        .has_args           = 0,
+        .has_secondary_args = 0
     },
     { // 3rd and 4th LEDs together
-        .set_level    = set_level_led3_led4,
-        .gradual_tick = gradual_tick_led3_led4,
-        .has_args     = 0
+        .set_level          = set_level_led3_led4,
+        .gradual_tick       = gradual_tick_led3_led4,
+        .has_args           = 0,
+        .has_secondary_args = 0
     },
     { // 4th LED only
-        .set_level    = set_level_led4,
-        .gradual_tick = gradual_tick_led4,
-        .has_args     = 0
+        .set_level          = set_level_led4,
+        .gradual_tick       = gradual_tick_led4,
+        .has_args           = 0,
+        .has_secondary_args = 0
     },
     { // main 2 and 4th LEDs together
-        .set_level    = set_level_led4_main2,
-        .gradual_tick = gradual_tick_led4_main2,
-        .has_args     = 0
+        .set_level          = set_level_led4_main2,
+        .gradual_tick       = gradual_tick_led4_main2,
+        .has_args           = 0,
+        .has_secondary_args = 0
     },
     { // all channels, tied together (equal amounts, max power)
-        .set_level    = set_level_all,
-        .gradual_tick = gradual_tick_all,
-        .has_args     = 0
+        .set_level          = set_level_all,
+        .gradual_tick       = gradual_tick_all,
+        .has_args           = 0,
+        .has_secondary_args = 0
     },
     { // 3ch blend (HSV style)
-        .set_level    = set_level_hsv,
-        .gradual_tick = gradual_tick_hsv,
-        .has_args     = 1
+        .set_level          = set_level_hsv,
+        .gradual_tick       = gradual_tick_hsv,
+        .has_args           = 1,
+        .has_secondary_args = 1
     },
     { // 3ch auto blend (red-warm-cool style, led4-led3-main2)
-        .set_level    = set_level_auto3,
-        .gradual_tick = gradual_tick_auto3,
-        .has_args     = 0
+        .set_level          = set_level_auto3,
+        .gradual_tick       = gradual_tick_auto3,
+        .has_args           = 0,
+        .has_secondary_args = 0
     },
     RGB_AUX_CHANNELS
 };
@@ -221,7 +230,7 @@ void set_level_all(uint8_t level) {
 void set_level_hsv(uint8_t level) {
     RGB_t color;
     uint8_t h = cfg.channel_mode_args[channel_mode];
-    uint8_t s = 255;  // TODO: drop saturation at brightest levels
+    uint8_t s = cfg.secondary_channel_mode_args[channel_mode];
     PWM_DATATYPE v = PWM_GET(pwm1_levels, level);
     color = hsv2rgb(h, s, v);
 
@@ -344,7 +353,7 @@ bool gradual_tick_hsv(uint8_t gt) {
     // figure out what exact PWM levels we're aiming for
     RGB_t color;
     uint8_t h = cfg.channel_mode_args[channel_mode];
-    uint8_t s = 255;  // TODO: drop saturation at brightest levels
+    uint8_t s = cfg.secondary_channel_mode_args[channel_mode];
     PWM_DATATYPE v = PWM_GET(pwm1_levels, gt);
     color = hsv2rgb(h, s, v);
 

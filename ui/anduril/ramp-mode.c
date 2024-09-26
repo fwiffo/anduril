@@ -440,6 +440,12 @@ uint8_t steady_state(Event event, uint16_t arg) {
                 && (channel_has_args(channel_mode)))
                 return EVENT_NOT_HANDLED;
         #endif
+        #ifdef USE_SECONDARY_CHANNEL_MODE_ARGS
+            // ramp secondary tint if tint exists in this mode
+            if ((event == EV_click4_hold)
+                && (channel_has_secondary_args(channel_mode)))
+                return EVENT_NOT_HANDLED;
+        #endif
         if (! arg) {  // first frame only, to allow thermal regulation to work
             #ifdef USE_2C_STYLE_CONFIG
             uint8_t tl = style_2c ? MAX_LEVEL : turbo_level;
@@ -459,6 +465,12 @@ uint8_t steady_state(Event event, uint16_t arg) {
             // ramp tint if tint exists in this mode
             if ((event == EV_click3_hold_release)
                 && (channel_has_args(channel_mode)))
+                return EVENT_NOT_HANDLED;
+        #endif
+        #ifdef USE_SECONDARY_CHANNEL_MODE_ARGS
+            // ramp secondary tint if tint exists in this mode
+            if ((event == EV_click4_hold_release)
+                && (channel_has_secondary_args(channel_mode)))
                 return EVENT_NOT_HANDLED;
         #endif
         set_level_and_therm_target(memorized_level);

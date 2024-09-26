@@ -13,11 +13,14 @@
     CM_AUXWHT
 
 #define RGB_AUX_CM_ARGS  0,0,0,0,0,0,0
+#define RGB_AUX_SCM_ARGS 0,0,0,0,0,0,0
 
 #define NUM_RGB_AUX_CHANNEL_MODES  7
 
 // include / exclude field based on compile options
-#ifdef USE_CHANNEL_MODE_ARGS
+#ifdef USE_SECONDARY_CHANNEL_MODE_ARGS
+    #define AUX_RGB_HAS_ARGS , .has_args = 0, .has_secondary_args = 0
+#elif defined(USE_CHANNEL_MODE_ARGS)
     #define AUX_RGB_HAS_ARGS , .has_args = 0
 #else
     #define AUX_RGB_HAS_ARGS
