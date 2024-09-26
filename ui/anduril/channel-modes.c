@@ -75,13 +75,11 @@ uint8_t channel_mode_state(Event event, uint16_t arg) {
             #ifdef USE_TINT_RAMP_DIRECTION_FIX // doesn't fit on the original LT1
             // Issue 69: if manual memory was set to an arg of 0 or 255, this could result in an incorrect
             // ramp direction with the arg resetting, so make sure tint_ramp_direction is set correctly
-            if (channel_has_args(channel_mode)) {
-                if (cfg.channel_mode_args[channel_mode] == 0){
-                    tint_ramp_direction = 1;
-                }
-                else if (cfg.channel_mode_args[channel_mode] == 255){
-                    tint_ramp_direction = -1;
-                }
+            if (cfg.channel_mode_args[channel_mode] == 0){
+                tint_ramp_direction = 1;
+            }
+            else if (cfg.channel_mode_args[channel_mode] == 255){
+                tint_ramp_direction = -1;
             }
             #endif
         }
