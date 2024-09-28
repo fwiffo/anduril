@@ -185,8 +185,9 @@ ISR(DSM_vect) {
 // LEDs 1+2 are 8-bit
 // this 8-bit channel may be LEDs 1+2 or LED 4, depending on wiring
 void set_level_main2(uint8_t level) {
-    set_hw_levels(PWM_GET(pwm1_levels, level), 0, 0,
-                  1,                           0, 0);
+    PWM_DATATYPE pwm = PWM_GET(pwm1_levels, level);
+    set_hw_levels(pwm, 0, 0,
+                  1,   0, 0);
 }
 
 // LED 1+2 and LED 3 together.
@@ -198,8 +199,9 @@ void set_level_main2_led3(uint8_t level) {
 
 // LED 3 is 16-bit
 void set_level_led3(uint8_t level) {
-    set_hw_levels(0, PWM_GET(pwm1_levels, level), 0,
-                  0, 1,                           0);
+    PWM_DATATYPE pwm = PWM_GET(pwm1_levels, level);
+    set_hw_levels(0, pwm, 0,
+                  0, 1,   0);
 }
 
 // LED 3 and LED 4 together.
@@ -211,7 +213,8 @@ void set_level_led3_led4(uint8_t level) {
 
 // this 16-bit channel may be LED 4 or LEDs 1+2, depending on wiring
 void set_level_led4(uint8_t level) {
-    set_hw_levels(0, 0, PWM_GET(pwm1_levels, level),
+    PWM_DATATYPE pwm = PWM_GET(pwm1_levels, level);
+    set_hw_levels(0, 0, pwm,
                   0, 0, 1);
 }
 

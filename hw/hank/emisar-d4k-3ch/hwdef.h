@@ -74,7 +74,7 @@ enum channel_modes_e {
 // _, _, _, _, _, _, _, 213=purple, _
 #define CHANNEL_MODE_ARGS 0,0,0,0,0,0,0,213,0,RGB_AUX_CM_ARGS
 // _, _, _, _, _, _, _, 255=full saturation, _
-#define SECONDARY_CHANNEL_MODE_ARGS 0,0,0,0,0,0,0,255,0,RGB_AUX_SCM_ARGS
+#define SECONDARY_CHANNEL_MODE_ARGS 0,0,0,0,0,0,0,127,0,RGB_AUX_SCM_ARGS
 #define USE_CUSTOM_CHANNEL_3H_MODES
 #define USE_CIRCULAR_TINT_3H
 
