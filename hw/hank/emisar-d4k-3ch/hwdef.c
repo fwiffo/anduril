@@ -246,8 +246,8 @@ void set_level_hsv(uint8_t level) {
     PWM_DATATYPE v = PWM_GET(pwm1_levels, level);
     color = hsv2rgb(h, s, v);
 
-    set_hw_levels(color.r, color.g, color.b,
-                  0,       0,       0);
+    set_hw_levels(color.r,    color.g,    color.b,
+                  color.r_on, color.g_on, color.b_on);
 }
 
 // calculate a 3-channel "auto tint" blend
