@@ -734,6 +734,11 @@ void manual_memory_restore() {
         for (uint8_t i=0; i<NUM_CHANNEL_MODES; i++)
           cfg.channel_mode_args[i] = cfg.manual_memory_channel_args[i];
     #endif
+    #ifdef USE_SECONDARY_CHANNEL_MODE_ARGS
+        for (uint8_t i=0; i<NUM_CHANNEL_MODES; i++)
+          cfg.secondary_channel_mode_args[i] =
+              cfg.manual_memory_secondary_channel_args[i];
+    #endif
 }
 
 void manual_memory_save() {
@@ -744,6 +749,11 @@ void manual_memory_save() {
     #ifdef USE_CHANNEL_MODE_ARGS
         for (uint8_t i=0; i<NUM_CHANNEL_MODES; i++)
           cfg.manual_memory_channel_args[i] = cfg.channel_mode_args[i];
+    #endif
+    #ifdef USE_SECONDARY_CHANNEL_MODE_ARGS
+        for (uint8_t i=0; i<NUM_CHANNEL_MODES; i++)
+          cfg.manual_memory_secondary_channel_args[i] =
+              cfg.secondary_channel_mode_args[i];
     #endif
 }
 #endif  // ifdef USE_MANUAL_MEMORY
