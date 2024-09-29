@@ -217,3 +217,6 @@
 
 // We want this bugfix on everything except the original t85 LT1 (because it doesn't fit)
 #define USE_TINT_RAMP_DIRECTION_FIX
+
+// enable channel mode config prerequisites for channel_uses_aux()
+#define USE_CHANNEL_USES_AUX

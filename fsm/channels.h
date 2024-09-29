@@ -35,6 +35,9 @@ typedef struct Channel {
         bool has_secondary_args;
         //uint8_t arg;  // is in the config struct, not here
     #endif
+    #ifdef USE_CHANNEL_USES_AUX
+        bool uses_aux;
+    #endif
 } Channel;
 
 Channel channels[];  // values are defined in the hwdef-*.c
@@ -83,6 +86,9 @@ StatePtr channel_3H_modes[NUM_CHANNEL_MODES];
     //#define channel_has_args(n) ((CHANNEL_HAS_ARGS >> n) & 1)
     // struct member
     #define channel_has_args(n) (channels[n].has_args)
+#endif
+#ifdef USE_CHANNEL_USES_AUX
+    #define channel_uses_aux(n) (channels[n].uses_aux)
 #endif
 
 #ifdef USE_SECONDARY_CHANNEL_MODE_ARGS
