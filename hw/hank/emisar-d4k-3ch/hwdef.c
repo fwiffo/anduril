@@ -249,8 +249,8 @@ void set_level_hsv(uint8_t level) {
     // v values when saturation is not 255.
     color = hsv2rgb(h, s, v);
 
-    set_hw_levels(color.r, color.g, color.b,
-                  0,       0,       0);
+    set_hw_levels(color.r,    color.g,    color.b,
+                  color.r_on, color.g_on, color.b_on);
 }
 
 // calculate a 3-channel "auto tint" blend
