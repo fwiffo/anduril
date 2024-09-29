@@ -101,6 +101,3 @@
 
 // for consistency with KR4 (not otherwise necessary though)
 #define USE_SOFT_FACTORY_RESET
-
-// Fwiffo's custom defaults.
-#include "config-fwiffo.h"
