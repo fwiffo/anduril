@@ -8,9 +8,18 @@
 
 #include "hank/config-fwiffo.h"
 
-// Default to main 2 LEDs (W1 6000K).
+// Default to HSV mode with a nice tint balance
 #undef DEFAULT_CHANNEL_MODE
-#define DEFAULT_CHANNEL_MODE CM_MAIN2
+#define DEFAULT_CHANNEL_MODE CM_HSV
+// 240 = CCT 4840K, DUV -0.0042
+// 245 = CCT 5130K, DUV -0.0032
+// 250 = CCT 5480K, DUV -0.0006
+// 256 = CCT 5970K, DUV +0.0020
+#undef CHANNEL_MODE_ARGS
+#define CHANNEL_MODE_ARGS 0,0,0,0,0,0,0,245,0,RGB_AUX_CM_ARGS             // Hue (6000K + a touch of amber)
+#undef SECONDARY_CHANNEL_MODE_ARGS
+#define SECONDARY_CHANNEL_MODE_ARGS 0,0,0,0,0,0,0,255,0,RGB_AUX_SCM_ARGS  // Saturation
+
 
 // Channels:
 // W1 6000K only: enable

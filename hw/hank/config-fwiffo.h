@@ -2,20 +2,20 @@
  * config-fwiffo.h: Fwiffo's customizations for various Hank lights.
  */
 
-// Factory reset to Advanced mode, not Simple, I hate you Simple.
+// Factory reset to Advanced mode, no simple UI.
 #undef USE_SIMPLE_UI
 #undef SIMPLE_UI_ACTIVE
 #define SIMPLE_UI_ACTIVE 0
 
-// Disable annoying momentary mode that can't be turned off without taking
-// apart the stupid light.
+// Disable momentary mode that can't be turned off without taking apart the
+// light.
 #undef USE_MOMENTARY_MODE
 
 // Temp in front of my computer where I'm usually flashing my flashlights...
 #undef THERM_AUTOCALIBRATE_TEMP
 #define THERM_AUTOCALIBRATE_TEMP 26
 
-// Disable nasty strobes.
+// Disable particularly aggressive strobes.
 #undef USE_PARTY_STROBE_MODE
 #undef USE_TACTICAL_STROBE_MODE
 #undef USE_TACTICAL_MODE
