@@ -118,6 +118,11 @@ typedef struct RGB_t {
     uint16_t r;
     uint16_t g;
     uint16_t b;
+    // The lowest PWM value may be 0, but with the channel still enabled. This
+    // indicates which channels should be "zero but on".
+    bool r_on;
+    bool g_on;
+    bool b_on;
 } RGB_t;
 RGB_t hsv2rgb(uint8_t h, uint8_t s, uint16_t v);
 #endif  // ifdef USE_HSV2RGB
