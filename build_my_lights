@@ -3,27 +3,28 @@ DEST_DIR="/mnt/g/My Drive/anduril firmware/"`date +%F_%H_%M_%S`
 mkdir "$DEST_DIR"
 
 for i in \
+    # "emisar-2ch stock" \
     "emisar-2ch d4v2-tintramp-sst20" \
     "emisar-2ch d4v2-tintramp-519a" \
     "emisar-2ch d4v2-astro" \
     "emisar-2ch d4sv2-flood-throw" \
+    # "emisar-2ch d2-stock-uv" \
     "emisar-2ch d2-uv" \
-    "emisar-2ch d2-stock-uv" \
+    # "emisar-d3aa stock" \
     "emisar-d3aa 519a-5700k-dd" \
     "emisar-d3aa candle" \
-    "emisar-d3aa stock" \
+    # "emisar-d4k-3ch stock" \
     "emisar-d4k-3ch w1" \
-    "emisar-d4k-3ch stock" \
+    # "noctigon-dm11/boost stock" \
     "noctigon-dm11/boost d1k-ffl707a" \
-    "noctigon-dm11/boost stock" \
+    # "noctigon-k1/sbt90 stock" \
     "noctigon-k1/sbt90 d1-sfn60" \
-    "noctigon-k1/sbt90 stock" \
+    # "noctigon-kr4 stock" \
     "noctigon-kr4 sst20" \
-    "noctigon-kr4 stock" \
-    "noctigon-kr4/219b d4v2" \
-    "noctigon-kr4/219b stock" \
-    "noctigon-kr4/nofet d4v2" \
-    "noctigon-kr4/nofet stock"
+    # "noctigon-kr4/219b stock" \
+    # "noctigon-kr4/219b d4v2" \
+    # "noctigon-kr4/nofet stock" \
+    "noctigon-kr4/nofet d4v2"
 do
     set -- $i  # Convert the above into $1, $2...
     dir="$1"
