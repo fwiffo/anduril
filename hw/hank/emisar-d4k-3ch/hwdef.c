@@ -244,6 +244,9 @@ void set_level_hsv(uint8_t level) {
     uint8_t h = cfg.channel_mode_args[channel_mode];
     uint8_t s = cfg.secondary_channel_mode_args[channel_mode];
     PWM_DATATYPE v = PWM_GET(pwm1_levels, level);
+    // This can result in RGB 0, 0, 0 at low levels; there needs to be a
+    // workaround here, or hsv2rgb needs to make more sense across the range of
+    // v values when saturation is not 255.
     color = hsv2rgb(h, s, v);
 
     set_hw_levels(color.r, color.g, color.b,
