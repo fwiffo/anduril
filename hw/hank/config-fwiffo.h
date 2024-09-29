@@ -7,6 +7,10 @@
 #undef SIMPLE_UI_ACTIVE
 #define SIMPLE_UI_ACTIVE 0
 
+// Disable annoying momentary mode that can't be turned off without taking
+// apart the stupid light.
+#undef USE_MOMENTARY_MODE
+
 // Temp in front of my computer where I'm usually flashing my flashlights...
 #undef THERM_AUTOCALIBRATE_TEMP
 #define THERM_AUTOCALIBRATE_TEMP 26
