@@ -46,6 +46,12 @@ uint8_t strobe_state(Event event, uint16_t arg) {
     #if (NUM_CHANNEL_MODES > 1) && defined(USE_CHANNEL_PER_STROBE)
     // 3 clicks: rotate through channel modes for the current strobe
     else if (event == EV_3clicks) {
+        #ifdef USE_RAINBOW_MODE
+        // Rainbow mode only works in one channel mode.
+        if (st == rainbow_mode_e) {
+            return EVENT_HANDLED;
+        }
+        #endif
         // TODO: maybe skip aux modes?
         set_channel_mode((channel_mode + 1) % NUM_CHANNEL_MODES);
         cfg.strobe_channels[st] = channel_mode;
@@ -94,6 +100,17 @@ uint8_t strobe_state(Event event, uint16_t arg) {
         }
         #endif
 
+        // rainbow mode brighter
+        #ifdef USE_RAINBOW_MODE
+        else if (st == rainbow_mode_e) {
+            cfg.rainbow_mode_brightness += ramp_direction;
+            if (cfg.rainbow_mode_brightness < 2) cfg.rainbow_mode_brightness = 2;
+            else if (cfg.rainbow_mode_brightness > MAX_LEVEL) cfg.rainbow_mode_brightness = MAX_LEVEL;
+            // Just wait for the next rainbow mode iteration, which happens
+            // frequently and will handle HSV correctly.
+        }
+        #endif
+
         return EVENT_HANDLED;
     }
     // reverse ramp direction on hold release
@@ -135,6 +152,16 @@ uint8_t strobe_state(Event event, uint16_t arg) {
         }
         #endif
 
+        // rainbow mode dimmer
+        #ifdef USE_RAINBOW_MODE
+        else if (st == rainbow_mode_e) {
+            if (cfg.rainbow_mode_brightness > 2)
+                cfg.rainbow_mode_brightness --;
+            // Just wait for the next rainbow mode iteration, which happens
+            // frequently and will handle HSV correctly.
+        }
+        #endif
+
         return EVENT_HANDLED;
     }
     // release hold: save new strobe settings
@@ -142,6 +169,14 @@ uint8_t strobe_state(Event event, uint16_t arg) {
         save_config();
         return EVENT_HANDLED;
     }
+    #ifdef USE_RAINBOW_MODE
+    else if (event == EV_click3_hold && st == rainbow_mode_e) {
+        // Rainbow mode is manipulating the channel mode args directly, so
+        // we want to swallow this event. TODO: Use this to set rainbow speed
+        // instead.
+        return EVENT_HANDLED;
+    }
+    #endif
     #ifdef USE_MOMENTARY_MODE
     // 5 clicks: go to momentary mode (momentary strobe)
     else if (event == EV_5clicks) {
@@ -170,6 +205,11 @@ inline void strobe_state_iter() {
     #if (NUM_CHANNEL_MODES > 1) && defined(USE_CHANNEL_PER_STROBE)
         // remember channel mode for each strobe
         channel_mode = cfg.strobe_channels[st];
+        #ifdef USE_RAINBOW_MODE
+        if (st == rainbow_mode_e) {
+            channel_mode = RAINBOW_MODE_CH;
+        }
+        #endif
     #endif
 
     switch(st) {
@@ -199,6 +239,12 @@ inline void strobe_state_iter() {
         #ifdef USE_BIKE_FLASHER_MODE
         case bike_flasher_e:
             bike_flasher_iter();
+            break;
+        #endif
+
+        #ifdef USE_RAINBOW_MODE
+        case rainbow_mode_e:
+            rainbow_mode_iter();
             break;
         #endif
     }
@@ -321,6 +367,26 @@ inline void bike_flasher_iter() {
 }
 #endif
 
+#ifdef USE_RAINBOW_MODE
+#ifndef RAINBOW_SPEED
+#define RAINBOW_SPEED 3
+#endif
+inline void rainbow_mode_iter() {
+    static uint8_t hue = 0;
+    uint8_t original_hue = cfg.channel_mode_args[channel_mode];
+
+    // Save/restore the current channel_mode_arg so that we can set the HSV
+    // values using the usual channel mode interface, but not mess up any saved
+    // channel settings. TODO: Find a better way since this causes flickering
+    // while setting saturation with 4H.
+    cfg.channel_mode_args[channel_mode] = hue++;
+    set_level(cfg.rainbow_mode_brightness);
+    cfg.channel_mode_args[channel_mode] = original_hue;
+
+    nice_delay_ms(RAINBOW_SPEED);
+}
+#endif  // USE_RAINBOW_MODE
+
 #ifdef USE_CANDLE_MODE
 #include "anduril/candle-mode.c"
 #endif
@@ -329,4 +395,3 @@ inline void bike_flasher_iter() {
 #ifdef USE_BORING_STROBE_STATE
 #include "anduril/ff-strobe-modes.c"
 #endif
-

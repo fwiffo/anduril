@@ -65,10 +65,17 @@ inline void lightning_storm_iter();
     inline void bike_flasher_iter();
 #endif  // ifdef USE_BIKE_FLASHER_MODE
 
+// rainbow mode config options
+#ifdef USE_RAINBOW_MODE
+    #if !defined(DEFAULT_RAINBOW_LEVEL)
+        #define DEFAULT_RAINBOW_LEVEL (RAMP_SIZE/3)
+    #endif
+    inline void rainbow_mode_iter();
+#endif  // ifdef USE_RAINBOW_MODE
+
 #ifdef USE_CANDLE_MODE
 #include "anduril/candle-mode.h"
 #endif
-
 
 #if defined(USE_POLICE_STROBE_MODE) || defined(USE_SOS_MODE_IN_FF_GROUP)
 #define USE_BORING_STROBE_STATE

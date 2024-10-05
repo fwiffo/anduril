@@ -92,6 +92,9 @@ typedef struct Config {
     #ifdef USE_BIKE_FLASHER_MODE
         uint8_t bike_flasher_brightness;
     #endif
+    #ifdef USE_RAINBOW_MODE
+        uint8_t rainbow_mode_brightness;
+    #endif
     #ifdef USE_BEACON_MODE
         uint8_t beacon_seconds;
     #endif
