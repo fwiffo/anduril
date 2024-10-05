@@ -20,7 +20,6 @@
 #undef SECONDARY_CHANNEL_MODE_ARGS
 #define SECONDARY_CHANNEL_MODE_ARGS 0,0,0,0,0,0,0,255,0,RGB_AUX_SCM_ARGS  // Saturation
 
-
 // Channels:
 // W1 6000K only: enable
 // W1 6000K + 519A: disable
