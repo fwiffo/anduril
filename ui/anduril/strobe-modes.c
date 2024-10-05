@@ -9,6 +9,12 @@
 #ifdef USE_STROBE_STATE
 uint8_t strobe_state(Event event, uint16_t arg) {
     static int8_t ramp_direction = 1;
+    #ifdef USE_RAINBOW_MODE
+    // Rainbow strobe mode manipulates the channel args to rotate through hues.
+    // We need to save and restore this value to avoid changing the saved
+    // channel args used in ramp mode or elsewhere.
+    static uint8_t saved_channel_arg = 0;
+    #endif
 
     // 'st' reduces ROM size slightly
     strobe_mode_te st = current_strobe_type;
@@ -30,24 +36,44 @@ uint8_t strobe_state(Event event, uint16_t arg) {
     else if (event == EV_enter_state) {
         current_strobe_type = cfg.strobe_type;
         ramp_direction = 1;
+        #ifdef USE_RAINBOW_MODE
+        if (current_strobe_type == rainbow_mode_e) {
+            saved_channel_arg = cfg.channel_mode_args[RAINBOW_MODE_CH];
+        }
+        #endif
         return EVENT_HANDLED;
     }
     // 1 click: off
     else if (event == EV_1click) {
+        #ifdef USE_RAINBOW_MODE
+        if (current_strobe_type == rainbow_mode_e) {
+            cfg.channel_mode_args[RAINBOW_MODE_CH] = saved_channel_arg;
+        }
+        #endif
         set_state(off_state, 0);
         return EVENT_HANDLED;
     }
     // 2 clicks: rotate through strobe/flasher modes
     else if (event == EV_2clicks) {
+        #ifdef USE_RAINBOW_MODE
+        if (current_strobe_type == rainbow_mode_e) {
+            cfg.channel_mode_args[RAINBOW_MODE_CH] = saved_channel_arg;
+        }
+        #endif
         current_strobe_type = cfg.strobe_type = (st + 1) % NUM_STROBES;
         save_config();
+        #ifdef USE_RAINBOW_MODE
+        if (current_strobe_type == rainbow_mode_e) {
+            saved_channel_arg = cfg.channel_mode_args[RAINBOW_MODE_CH];
+        }
+        #endif
         return EVENT_HANDLED;
     }
     #if (NUM_CHANNEL_MODES > 1) && defined(USE_CHANNEL_PER_STROBE)
     // 3 clicks: rotate through channel modes for the current strobe
     else if (event == EV_3clicks) {
         #ifdef USE_RAINBOW_MODE
-        // Rainbow mode only works in one channel mode.
+        // Rainbow mode only works in one channel.
         if (st == rainbow_mode_e) {
             return EVENT_HANDLED;
         }
@@ -61,8 +87,18 @@ uint8_t strobe_state(Event event, uint16_t arg) {
     #endif
     // 4 clicks: rotate backward through strobe/flasher modes
     else if (event == EV_4clicks) {
+        #ifdef USE_RAINBOW_MODE
+        if (current_strobe_type == rainbow_mode_e) {
+            cfg.channel_mode_args[RAINBOW_MODE_CH] = saved_channel_arg;
+        }
+        #endif
         current_strobe_type = cfg.strobe_type = (st - 1 + NUM_STROBES) % NUM_STROBES;
         save_config();
+        #ifdef USE_RAINBOW_MODE
+        if (current_strobe_type == rainbow_mode_e) {
+            saved_channel_arg = cfg.channel_mode_args[RAINBOW_MODE_CH];
+        }
+        #endif
         return EVENT_HANDLED;
     }
     // hold: change speed (go faster)
@@ -117,7 +153,17 @@ uint8_t strobe_state(Event event, uint16_t arg) {
     // ... and save new strobe settings
     else if (event == EV_click1_hold_release) {
         ramp_direction = -ramp_direction;
+        #ifdef USE_RAINBOW_MODE
+        if (current_strobe_type == rainbow_mode_e) {
+            cfg.channel_mode_args[RAINBOW_MODE_CH] = saved_channel_arg;
+        }
+        #endif
         save_config();
+        #ifdef USE_RAINBOW_MODE
+        if (current_strobe_type == rainbow_mode_e) {
+            saved_channel_arg = cfg.channel_mode_args[RAINBOW_MODE_CH];
+        }
+        #endif
         return EVENT_HANDLED;
     }
     // click, hold: change speed (go slower)
@@ -166,7 +212,17 @@ uint8_t strobe_state(Event event, uint16_t arg) {
     }
     // release hold: save new strobe settings
     else if (event == EV_click2_hold_release) {
+        #ifdef USE_RAINBOW_MODE
+        if (current_strobe_type == rainbow_mode_e) {
+            cfg.channel_mode_args[RAINBOW_MODE_CH] = saved_channel_arg;
+        }
+        #endif
         save_config();
+        #ifdef USE_RAINBOW_MODE
+        if (current_strobe_type == rainbow_mode_e) {
+            saved_channel_arg = cfg.channel_mode_args[RAINBOW_MODE_CH];
+        }
+        #endif
         return EVENT_HANDLED;
     }
     #ifdef USE_RAINBOW_MODE
@@ -204,10 +260,13 @@ inline void strobe_state_iter() {
 
     #if (NUM_CHANNEL_MODES > 1) && defined(USE_CHANNEL_PER_STROBE)
         // remember channel mode for each strobe
-        channel_mode = cfg.strobe_channels[st];
         #ifdef USE_RAINBOW_MODE
         if (st == rainbow_mode_e) {
             channel_mode = RAINBOW_MODE_CH;
+        } else {
+        #endif
+            channel_mode = cfg.strobe_channels[st];
+        #ifdef USE_RAINBOW_MODE
         }
         #endif
     #endif
@@ -372,16 +431,8 @@ inline void bike_flasher_iter() {
 #define RAINBOW_SPEED 3
 #endif
 inline void rainbow_mode_iter() {
-    static uint8_t hue = 0;
-    uint8_t original_hue = cfg.channel_mode_args[channel_mode];
-
-    // Save/restore the current channel_mode_arg so that we can set the HSV
-    // values using the usual channel mode interface, but not mess up any saved
-    // channel settings. TODO: Find a better way since this causes flickering
-    // while setting saturation with 4H.
-    cfg.channel_mode_args[channel_mode] = hue++;
+    cfg.channel_mode_args[channel_mode]++;
     set_level(cfg.rainbow_mode_brightness);
-    cfg.channel_mode_args[channel_mode] = original_hue;
 
     nice_delay_ms(RAINBOW_SPEED);
 }
