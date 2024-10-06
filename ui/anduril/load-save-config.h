@@ -131,6 +131,10 @@ Config cfg = {
     #endif
     #ifdef USE_RAINBOW_MODE
         .rainbow_mode_brightness = DEFAULT_RAINBOW_LEVEL,
+        #ifndef DEFAULT_rainbow_mode_speed
+        #define DEFAULT_rainbow_mode_speed 80
+        #endif
+        .rainbow_mode_speed = DEFAULT_rainbow_mode_speed,
     #endif
     #ifdef USE_BEACON_MODE
         // beacon timing
