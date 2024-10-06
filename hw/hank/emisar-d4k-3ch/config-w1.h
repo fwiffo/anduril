@@ -32,7 +32,7 @@
 // Auto-tint: disable
 // AUX Red: enable
 // Remaining AUX: disable
-// doesn't make sense for this set of LEDs. Keep each W1 by itself, or together,
-// and keep HSV mode. Also enable RGB AUX red as extra-low red mode.
+// Blending the 519A with the other modes doesn't make sense, so those channels
+// are disabled.
 #undef CHANNEL_MODES_ENABLED
 #define CHANNEL_MODES_ENABLED 0b0000001010110101
