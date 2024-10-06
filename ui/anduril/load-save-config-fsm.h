@@ -94,6 +94,7 @@ typedef struct Config {
     #endif
     #ifdef USE_RAINBOW_MODE
         uint8_t rainbow_mode_brightness;
+        int8_t rainbow_mode_speed;
     #endif
     #ifdef USE_BEACON_MODE
         uint8_t beacon_seconds;
