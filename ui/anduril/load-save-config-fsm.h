@@ -96,6 +96,9 @@ typedef struct Config {
         uint8_t rainbow_mode_brightness;
         int8_t rainbow_mode_speed;
     #endif
+    #ifdef USE_RAINBOW_PARTY
+        uint8_t rainbow_party_brightness;
+    #endif
     #ifdef USE_BEACON_MODE
         uint8_t beacon_seconds;
     #endif

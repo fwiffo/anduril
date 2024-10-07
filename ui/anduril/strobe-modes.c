@@ -148,6 +148,16 @@ uint8_t strobe_state(Event event, uint16_t arg) {
         }
         #endif
 
+        // rainbow party brighter
+        #ifdef USE_RAINBOW_PARTY
+        else if (st == rainbow_party_e) {
+            cfg.rainbow_party_brightness += ramp_direction;
+            if (cfg.rainbow_party_brightness < 2) cfg.rainbow_party_brightness = 2;
+            else if (cfg.rainbow_party_brightness > MAX_LEVEL) cfg.rainbow_party_brightness = MAX_LEVEL;
+            set_level(cfg.rainbow_party_brightness);
+        }
+        #endif
+
         return EVENT_HANDLED;
     }
     // reverse ramp direction on hold release
@@ -206,6 +216,15 @@ uint8_t strobe_state(Event event, uint16_t arg) {
             if (cfg.rainbow_mode_brightness > 2)
                 cfg.rainbow_mode_brightness --;
             set_level(cfg.rainbow_mode_brightness);
+        }
+        #endif
+
+        // rainbow party dimmer
+        #ifdef USE_RAINBOW_PARTY
+        else if (st == rainbow_party_e) {
+            if (cfg.rainbow_party_brightness > 2)
+                cfg.rainbow_party_brightness --;
+            set_level(cfg.rainbow_party_brightness);
         }
         #endif
 
@@ -327,6 +346,12 @@ inline void strobe_state_iter() {
         #ifdef USE_RAINBOW_MODE
         case rainbow_mode_e:
             rainbow_mode_iter();
+            break;
+        #endif
+
+        #ifdef USE_RAINBOW_PARTY
+        case rainbow_party_e:
+            rainbow_party_iter();
             break;
         #endif
     }
@@ -471,6 +496,30 @@ inline void rainbow_mode_iter() {
     nice_delay_ms(delay);
 }
 #endif  // USE_RAINBOW_MODE
+
+#ifdef USE_RAINBOW_PARTY
+inline void rainbow_party_iter() {
+    static uint8_t step = 0;
+    uint8_t ch = RAINBOW_PARTY_CH1;
+
+    switch (step) {
+        case 1:
+        case 3:
+        case 5:
+            ch = RAINBOW_PARTY_CH2;
+            break;
+        case 4:
+        case 6:
+        case 8:
+            ch = RAINBOW_PARTY_CH3;
+            break;
+    }
+    set_channel_mode(ch);
+    step = (step+1) % 9;
+    set_level(cfg.rainbow_party_brightness);
+    nice_delay_ms(80);
+}
+#endif  // USE_RAINBOW_PARTY
 
 #ifdef USE_CANDLE_MODE
 #include "anduril/candle-mode.c"

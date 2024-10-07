@@ -49,6 +49,9 @@ typedef enum {
     #ifdef USE_RAINBOW_MODE
     rainbow_mode_e,
     #endif
+    #ifdef USE_RAINBOW_PARTY
+    rainbow_party_e,
+    #endif
     strobe_mode_END
 } strobe_mode_te;
 
