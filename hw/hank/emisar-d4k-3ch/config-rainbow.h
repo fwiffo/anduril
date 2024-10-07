@@ -16,12 +16,9 @@
 #undef SECONDARY_CHANNEL_MODE_ARGS
 #define SECONDARY_CHANNEL_MODE_ARGS 0,0,0,0,0,0,0,255,0,RGB_AUX_SCM_ARGS  // Saturation
 
-// This is doing weird things and combined with the dimness of the violet LEDs,
-// might as well just turn it off.
+// This is doing weird with the dimness of the violet LEDs, might as well just
+// turn it off.
 #undef USE_AUX_RGB_LEDS_WHILE_ON
-
-// Violet LED can't really max out.
-#undef DEFAULT_BIKING_LEVEL RAMP_SIZE/5
 
 // Channels:
 // Violet: enable
@@ -37,4 +34,4 @@
 // AUX Blue: enable
 // Remaining AUX: disable
 #undef CHANNEL_MODES_ENABLED
-#define CHANNEL_MODES_ENABLED 0b0100001011111111
+#define CHANNEL_MODES_ENABLED 0b0010001011111111
