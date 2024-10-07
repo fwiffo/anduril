@@ -75,6 +75,14 @@ inline void lightning_storm_iter();
     inline void rainbow_mode_iter();
 #endif  // ifdef USE_RAINBOW_MODE
 
+// rainbow party config options
+#ifdef USE_RAINBOW_MODE
+    #if !defined(DEFAULT_RAINBOW_PARTY_LEVEL)
+        #define DEFAULT_RAINBOW_PARTY_LEVEL (RAMP_SIZE/3)
+    #endif
+    inline void rainbow_party_iter();
+#endif  // ifdef USE_RAINBOW_PARTY
+
 #ifdef USE_CANDLE_MODE
 #include "anduril/candle-mode.h"
 #endif

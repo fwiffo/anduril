@@ -136,6 +136,9 @@ Config cfg = {
         #endif
         .rainbow_mode_speed = DEFAULT_RAINBOW_MODE_SPEED,
     #endif
+    #ifdef USE_RAINBOW_PARTY
+        .rainbow_party_brightness = DEFAULT_RAINBOW_LEVEL,
+    #endif
     #ifdef USE_BEACON_MODE
         // beacon timing
         .beacon_seconds = 2,

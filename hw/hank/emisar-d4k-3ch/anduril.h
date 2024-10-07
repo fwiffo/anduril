@@ -102,9 +102,15 @@
 // for consistency with KR4 (not otherwise necessary though)
 #define USE_SOFT_FACTORY_RESET
 
-// Use three channels for a rainbow-cycling strobe mode.
+// Use HSV channel for a rainbow-cycling strobe mode.
 #define USE_RAINBOW_MODE
 #define RAINBOW_MODE_CH CM_HSV
+
+// Use three channels for a rainbow-cycling strobe mode.
+#define USE_RAINBOW_PARTY
+#define RAINBOW_PARTY_CH1 CM_MAIN2
+#define RAINBOW_PARTY_CH2 CM_LED3
+#define RAINBOW_PARTY_CH3 CM_LED4
 
 // Fwiffo's custom defaults.
 #include "config-fwiffo.h"
