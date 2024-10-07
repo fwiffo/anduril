@@ -25,6 +25,7 @@
         .set_level    = set_level_aux, \
         .gradual_tick = gradual_tick_null \
         AUX_HAS_ARGS \
+        AUX_USES_AUX \
     }
 
 void set_level_aux(uint8_t level);

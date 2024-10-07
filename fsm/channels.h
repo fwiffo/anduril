@@ -86,6 +86,9 @@ StatePtr channel_3H_modes[NUM_CHANNEL_MODES];
     //#define channel_has_args(n) ((CHANNEL_HAS_ARGS >> n) & 1)
     // struct member
     #define channel_has_args(n) (channels[n].has_args)
+    #ifdef USE_CHANNEL_USES_AUX
+      #define channel_uses_aux(n) (channels[n].uses_aux)
+    #endif
 #endif
 #ifdef USE_CHANNEL_USES_AUX
     #define channel_uses_aux(n) (channels[n].uses_aux)

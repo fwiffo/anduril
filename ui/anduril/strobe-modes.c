@@ -80,8 +80,37 @@ uint8_t strobe_state(Event event, uint16_t arg) {
             return EVENT_HANDLED;
         }
         #endif
-        // TODO: maybe skip aux modes?
-        set_channel_mode((channel_mode + 1) % NUM_CHANNEL_MODES);
+        uint8_t next_ch = channel_mode;
+        // TODO: police flasher mode isn't handled by this, doesn't really matter as it sets modes anyway,
+        // but maybe should do something sensible to handle it here as well?
+        #if (defined(USE_BIKE_FLASHER_MODE) || defined(USE_CANDLE_MODE))
+          if (
+          #ifdef USE_BIKE_FLASHER_MODE
+              (current_strobe_type == bike_flasher_e)
+            #ifdef USE_CANDLE_MODE
+              ||
+            #endif
+          #endif
+          #ifdef USE_CANDLE_MODE
+              (current_strobe_type == candle_mode_e)
+          #endif
+          ){
+              uint8_t count = 0;
+              do {
+                  count++;
+                  next_ch = ((next_ch + 1) % NUM_CHANNEL_MODES);
+                  #ifdef USE_CHANNEL_USES_AUX // this bugfix is not available without this feature (probably only on t85 without RGB, where it matters less)
+                      //TODO: do something else here to get the same effect, maybe using NUM_CHANNEL_MODES?
+                      if (!channel_uses_aux(next_ch)) break;
+                  #endif
+              } while (count < NUM_CHANNEL_MODES);
+          } else {
+              next_ch = ((channel_mode + 1) % NUM_CHANNEL_MODES);
+          }
+          set_channel_mode(next_ch);
+        #else
+          set_channel_mode((channel_mode + 1) % NUM_CHANNEL_MODES);
+        #endif
         cfg.strobe_channels[st] = channel_mode;
         save_config();
         return EVENT_HANDLED;
