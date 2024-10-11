@@ -11,12 +11,12 @@ for i in \
     "emisar-d3aa 519a-5700k-dd" \
     "emisar-d3aa sft-25r" \
     "emisar-d3aa candle" \
-    "emisar-d4k-3ch w1" \
+    "emisar-d4k-3ch w1-mix" \
     "emisar-d4k-3ch rainbow" \
     "noctigon-dm11/boost d1k-ffl707a" \
     "noctigon-k1/sbt90 d1-sfn60" \
     "noctigon-kr4 sst20" \
-    "noctigon-kr4/nofet d4v2"
+    "noctigon-kr4/nofet d4v2-219b"
     # "emisar-2ch stock" \
     # "emisar-2ch d2-stock-uv" \
     # "emisar-d3aa stock" \
@@ -25,7 +25,7 @@ for i in \
     # "noctigon-k1/sbt90 stock" \
     # "noctigon-kr4 stock" \
     # "noctigon-kr4/219b stock" \
-    # "noctigon-kr4/219b d4v2" \
+    # "noctigon-kr4/219b d4v2-219b" \
     # "noctigon-kr4/nofet stock" \
 do
     set -- $i  # Convert the above into $1, $2...
