@@ -62,6 +62,3 @@
 #define THERM_FASTER_LEVEL 140
 #undef MIN_THERM_STEPDOWN
 #define MIN_THERM_STEPDOWN 80  // must be > end of dynamic PWM range
-
-// Fwiffo's custom defaults.
-#include "config-fwiffo.h"

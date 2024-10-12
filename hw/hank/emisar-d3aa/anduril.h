@@ -118,6 +118,3 @@
 
 // Seems to be necessary?
 #define USE_DELAY_ZERO
-
-// Fwiffo's custom defaults.
-#include "config-fwiffo.h"

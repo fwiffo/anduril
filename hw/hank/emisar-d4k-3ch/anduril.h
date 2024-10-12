@@ -111,6 +111,3 @@
 #define RAINBOW_PARTY_CH1 CM_MAIN2
 #define RAINBOW_PARTY_CH2 CM_LED3
 #define RAINBOW_PARTY_CH3 CM_LED4
-
-// Fwiffo's custom defaults.
-#include "config-fwiffo.h"

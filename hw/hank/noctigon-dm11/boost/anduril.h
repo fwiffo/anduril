@@ -88,6 +88,3 @@
 
 // added for convenience
 #define USE_SOFT_FACTORY_RESET
-
-// Fwiffo's custom defaults.
-#include "config-fwiffo.h"

@@ -91,6 +91,3 @@
 
 // for compatibility with other models
 #define USE_SOFT_FACTORY_RESET
-
-// Fwiffo's custom defaults.
-#include "config-fwiffo.h"
