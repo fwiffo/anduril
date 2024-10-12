@@ -16,9 +16,10 @@
 #undef SECONDARY_CHANNEL_MODE_ARGS
 #define SECONDARY_CHANNEL_MODE_ARGS 0,0,0,0,0,0,0,255,0,RGB_AUX_SCM_ARGS  // Saturation
 
-// This is doing weird with the dimness of the violet LEDs, might as well just
-// turn it off.
+// This is doing weird with the dimness of the violet LEDs, turn up the
+// brightness for using it.
 #undef USE_AUX_RGB_LEDS_WHILE_ON
+#define USE_AUX_RGB_LEDS_WHILE_ON 100
 
 // Channels:
 // Violet: enable
