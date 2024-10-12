@@ -4,7 +4,10 @@
  * Channel 1: Nichia 519A, 5700K, dedomed
  */
 
-#include "hank/config-fwiffo.h"
+#pragma once
+
+#include "hank/emisar-d3aa/anduril.h"
+#include "fwiffo/anduril.h"
 
 #undef DEFAULT_JUMP_START_LEVEL
 #define DEFAULT_JUMP_START_LEVEL 10  // TODO: tune better.

@@ -4,7 +4,10 @@
  * Channel 1: Sofirn SFN60 5500K
  */
 
-#include "hank/config-fwiffo.h"
+#pragma once
+
+#include "hank/noctigon-k1/sbt90/anduril.h"
+#include "fwiffo/anduril.h"
 
 #undef DEFAULT_JUMP_START_LEVEL
 #undef JUMP_START_TIME

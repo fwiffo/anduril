@@ -6,7 +6,10 @@
  * Channel 3: Nichia 519a, 4500K
  */
 
-#include "hank/config-fwiffo.h"
+#pragma once
+
+#include "hank/emisar-d4k-3ch/anduril.h"
+#include "fwiffo/anduril.h"
 
 // Default to HSV mode with a nice tint balance
 #undef DEFAULT_CHANNEL_MODE

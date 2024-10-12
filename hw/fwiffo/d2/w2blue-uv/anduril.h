@@ -5,7 +5,10 @@
  * Channel 2: 365nm UV with ZWB2 filter
  */
 
-#include "hank/config-fwiffo.h"
+#pragma once
+
+#include "hank/emisar-2ch/anduril.h"
+#include "fwiffo/anduril.h"
 
 // Default to first channel (blue).
 #undef DEFAULT_CHANNEL_MODE

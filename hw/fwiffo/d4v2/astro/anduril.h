@@ -5,7 +5,10 @@
  * Channel 2: Luminus SST-20, Deep Red, 660nm
  */
 
-#include "hank/config-fwiffo.h"
+#pragma once
+
+#include "hank/emisar-2ch/anduril.h"
+#include "fwiffo/anduril.h"
 
 // Default to red channel for astro.
 #define SWAP_SINGLE_CHANNELS_IN_MENU

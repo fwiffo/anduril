@@ -5,7 +5,10 @@
  * Channel 2: Luminus SST-20, 2700K, 95 CRI
  */
 
-#include "hank/config-fwiffo.h"
+#pragma once
+
+#include "hank/emisar-2ch/anduril.h"
+#include "fwiffo/anduril.h"
 
 // Default to auto-blend mode.
 #undef DEFAULT_CHANNEL_MODE

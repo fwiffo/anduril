@@ -4,7 +4,10 @@
  * Channel 1: Luminus SST-20, 4000k, 95 CRI
  */
 
-#include "hank/config-fwiffo.h"
+#pragma once
+
+#include "hank/noctigon-kr4/anduril.h"
+#include "fwiffo/anduril.h"
 
 #undef DEFAULT_JUMP_START_LEVEL
 #define DEFAULT_JUMP_START_LEVEL 10  // TODO: tune better.

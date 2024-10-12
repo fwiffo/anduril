@@ -5,7 +5,10 @@
  * Channel 2: Nichia 519A 3500K with dome
  */
 
-#include "hank/config-fwiffo.h"
+#pragma once
+
+#include "hank/emisar-2ch/anduril.h"
+#include "fwiffo/anduril.h"
 
 // Default to auto-blend mode.
 #undef DEFAULT_CHANNEL_MODE

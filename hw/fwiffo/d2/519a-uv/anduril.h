@@ -1,11 +1,14 @@
 /*
  * D2 dual channel.
  * Stone White with blue switch
- * Channel 1: W2 Deep Blue
+ * Channel 1: Nichia 519A 5700K (with dome)
  * Channel 2: 365nm UV with ZWB2 filter
  */
 
-#include "hank/config-fwiffo.h"
+#pragma once
+
+#include "hank/emisar-2ch/anduril.h"
+#include "fwiffo/anduril.h"
 
 // Default to first channel (blue).
 #undef DEFAULT_CHANNEL_MODE
