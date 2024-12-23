@@ -1,6 +1,13 @@
 /*
  * D3AA with single channel Nichia 519A.
+ *
  * Red with red switch.
+ * Channel 1: Nichia 519A, 5700K, dedomed
+ *
+ * Cyan with cyan switch.
+ * Channel 1: Nichia 519A, 5000K, with dome
+ *
+ * "Oil Slick" Titanium colorful series
  * Channel 1: Nichia 519A, 5700K, dedomed
  */
 
