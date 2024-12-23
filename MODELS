@@ -86,7 +86,7 @@ Model     MCU         Name
 8112      attiny1634  fwiffo-d1k-ffl707a         (hank-noctigon-dm11/boost)
 8121      attiny1634  fwiffo-d2-519a-uv          (hank-emisar-2ch)
 8122      attiny1634  fwiffo-d2-w2blue-uv        (hank-emisar-2ch)
-8131      avr32dd20   fwiffo-d3aa-519a-5700k-dd  (hank-emisar-d3aa)
+8131      avr32dd20   fwiffo-d3aa-519a           (hank-emisar-d3aa)
 8132      avr32dd20   fwiffo-d3aa-candle         (hank-emisar-d3aa)
 8133      avr32dd20   fwiffo-d3aa-sft-25r        (hank-emisar-d3aa)
 8141      attiny1634  fwiffo-d4v2-219b           (hank-noctigon-kr4-nofet)
