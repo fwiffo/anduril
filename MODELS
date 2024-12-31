@@ -82,21 +82,23 @@ Model     MCU         Name
 1631      attiny1616  thefreeman-boost21-mp3431-hdr-dac-argb
 1632      attiny1616  thefreeman-boost-fwaa-mp3432-hdr-dac-rgb
 1632dd20  avr32dd20   thefreeman-avr32dd20-devkit
-8111      attiny1634  fwiffo-d1-sfn60            (hank-noctigon-k1/sbt90)
-8112      attiny1634  fwiffo-d1k-ffl707a         (hank-noctigon-dm11/boost)
+8111      attiny1634  fwiffo-d1k-ffl707a         (hank-noctigon-dm11/boost)
+8112      attiny1634  fwiffo-d1-sfn60            (hank-noctigon-k1/sbt90)
+8113      avr32dd20   fwiffo-da1k-xhp703hi       (hank-lume-x1)
 8121      attiny1634  fwiffo-d2-519a-uv          (hank-emisar-2ch)
 8122      attiny1634  fwiffo-d2-w2blue-uv        (hank-emisar-2ch)
 8131      avr32dd20   fwiffo-d3aa-519a           (hank-emisar-d3aa)
 8132      avr32dd20   fwiffo-d3aa-candle         (hank-emisar-d3aa)
 8133      avr32dd20   fwiffo-d3aa-sft-25r        (hank-emisar-d3aa)
 8141      attiny1634  fwiffo-d4v2-219b           (hank-noctigon-kr4-nofet)
-8142      attiny1634  fwiffo-d4v2-astro          (hank-emisar-2ch)
-8143      attiny1634  fwiffo-d4v2-tintramp-sst20 (hank-emisar-2ch)
-8144      attiny1634  fwiffo-d4v2-tintramp-519a  (hank-emisar-2ch)
-8151      attiny1634  fwiffo-d4sv2-flood-throw   (hank-emisar-2ch)
+8142      attiny1634  fwiffo-kr4-sst20           (hank-noctigon-kr4)
+8143      avr32dd20   fwiffo-dw4k-519a-lume-x1   (hank-lume-x1)
+8151      attiny1634  fwiffo-d4v2-astro          (hank-emisar-2ch)
+8152      attiny1634  fwiffo-d4v2-tintramp-519a  (hank-emisar-2ch)
+8153      attiny1634  fwiffo-d4v2-tintramp-sst20 (hank-emisar-2ch)
+8154      attiny1634  fwiffo-d4sv2-flood-throw   (hank-emisar-2ch)
 8161      attiny1634  fwiffo-d4k-rainbow         (hank-emisar-d4k-3ch)
 8162      attiny1634  fwiffo-d4k-w1-mix          (hank-emisar-d4k-3ch)
-8241      attiny1634  fwiffo-kr4-sst20           (hank-noctigon-kr4)
 
 Duplicates:
 

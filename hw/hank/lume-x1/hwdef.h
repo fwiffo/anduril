@@ -55,7 +55,9 @@ enum CHANNEL_MODES {
 #define DEFAULT_CHANNEL_MODE  CM_MAIN
 
 // right-most bit first, modes are in fedcba9876543210 order
+#ifndef CHANNEL_MODES_ENABLED
 #define CHANNEL_MODES_ENABLED 0b0000000000000001
+#endif
 
 //***************************************
 //**       SET UP DAC AND PWM          **

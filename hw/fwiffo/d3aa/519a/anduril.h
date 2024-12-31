@@ -7,7 +7,7 @@
  * Cyan with cyan switch.
  * Channel 1: Nichia 519A, 5000K, with dome
  *
- * "Oil Slick" Titanium colorful series
+ * "Oil Slick" Titanium colorful series with cool white switch.
  * Channel 1: Nichia 519A, 5700K, dedomed
  */
 
